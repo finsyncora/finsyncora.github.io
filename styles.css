@@ -566,3 +566,31 @@ button { cursor: pointer; }
 @media (max-width: 480px) {
   .solution-overview-grid { grid-template-columns:1fr; }
 }
+
+
+/* Hero image styling */
+.hero-visual-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 24px;
+}
+
+.hero-image-wrap {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 25px 70px rgba(14, 35, 68, 0.12);
+}
+
+@media (max-width: 768px) {
+  .hero-visual-image {
+    border-radius: 16px;
+  }
+
+  .hero-image-wrap {
+    border-radius: 16px;
+  }
+}
