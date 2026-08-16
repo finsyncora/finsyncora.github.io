@@ -1,44 +1,21 @@
-# Priya Salve — Tally ↔ Google Sheets Automation Website
+# Tally ↔ Google Sheets Automation Website
 
-A responsive, self-contained portfolio/service website for Tally ↔ Google Sheets integrations, finance automation, and dynamic dashboards.
+Static responsive website for Tally ↔ Google Sheets integration, automated finance reporting, and dashboard services.
 
-## What changed in this version
-
-- Added original local SVG visuals for the hero, sync architecture, sales intelligence, receivables aging, and payables planning.
-- Added an interactive dashboard demo with Sales, Receivables, Payables, and Cash views.
-- Added an automation opportunity calculator.
-- Added a clear "before vs after automation" section.
-- Added a larger report catalogue, project showcase, implementation process, FAQ, and lead form.
-- Kept the site dependency-free: no external fonts, chart libraries, or image CDNs are required.
-- Added favicon and improved SEO/social meta tags.
-
-## Files
-
-- `index.html` — website structure and content
-- `styles.css` — responsive visual design and animations
-- `script.js` — navigation, tabs, dynamic dashboard, calculator, and enquiry form
-- `assets/` — local SVG illustrations and favicon
+## Current version
+- External Apps Script/dashboard links have been removed.
+- Dashboard work is shown using static visual preview images only.
+- Four concept previews are included: Sales, Receivables, Payables, and Cash Flow.
+- The Tally ↔ Google Sheets integration visual is bundled locally.
 
 ## Run locally
+Open `index.html` directly in a browser, or use VS Code + Live Server.
 
-Open `index.html` directly in a modern browser. No build step is required.
+## Publish on GitHub Pages
+1. Upload all files and the `assets` folder to your repository.
+2. Keep `index.html` in the repository root.
+3. Open repository Settings → Pages.
+4. Select Deploy from a branch → `main` → `/ (root)`.
+5. Save and wait for GitHub Pages to publish the site.
 
-For local development with a server, from this folder you can run:
-
-```bash
-python -m http.server 8000
-```
-
-Then open `http://localhost:8000`.
-
-## Google Analytics
-
-No Google Analytics Measurement ID is included yet. Once you have a GA4 ID in the form `G-XXXXXXXXXX`, add the Google tag in the `<head>` of `index.html`.
-
-## Contact form
-
-The form prepares an email to `Workplace132000@gmail.com` using the visitor's default mail client. It does not send data to a backend.
-
-## Important note
-
-All figures shown in dashboard demos are illustrative sample data, not client results.
+The preview images are illustrative concepts and are not live client dashboards or client data.
