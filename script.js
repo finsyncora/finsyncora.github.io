@@ -40,36 +40,64 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 document.getElementById('year').textContent = new Date().getFullYear();
 
 const form = document.getElementById('projectForm');
-form?.addEventListener('submit', event => {
+const formStatus = document.getElementById('formStatus');
+const enquiryEndpoint = 'https://script.google.com/macros/s/AKfycbyp1wBv0Nhp2OV5diVLzRYNgiqk7Vb_3ivzG0MtpZhVPLgzJdlVcjlLvNhBXbZEWegD/exec';
+
+form?.addEventListener('submit', async event => {
   event.preventDefault();
+
+  const submitButton = form.querySelector('button[type="submit"]');
+  const originalButtonHTML = submitButton?.innerHTML || 'Send enquiry <span>↗</span>';
+
   const data = new FormData(form);
-  const name = data.get('name') || '';
-  const company = data.get('company') || '';
-  const email = data.get('email') || '';
-  const service = data.get('service') || '';
-  const details = data.get('details') || '';
+  const payload = {
+    name: String(data.get('name') || '').trim(),
+    company: String(data.get('company') || '').trim(),
+    email: String(data.get('email') || '').trim(),
+    service: String(data.get('service') || '').trim(),
+    message: String(data.get('details') || '').trim()
+  };
 
-  const subject = encodeURIComponent(`Automation enquiry — ${service}`);
-  const body = encodeURIComponent(
-`Hi Priya,
+  if (!payload.name || !payload.email || !payload.service) {
+    if (formStatus) formStatus.textContent = 'Please complete your name, email, and service.';
+    return;
+  }
 
-I would like to discuss a project.
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+  }
+  if (formStatus) formStatus.textContent = 'Sending your enquiry...';
 
-Name: ${name}
-Company: ${company}
-Email: ${email}
-Service: ${service}
+  try {
+    await fetch(enquiryEndpoint, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8'
+      },
+      body: JSON.stringify(payload)
+    });
 
-Project details:
-${details}
-
-Regards,
-${name}`
-  );
-
-  window.location.href = `mailto:Workplace132000@gmail.com?subject=${subject}&body=${body}`;
+    form.reset();
+    if (formStatus) {
+      formStatus.textContent = '✓ Thank you! Your enquiry has been sent to FinSyncora.';
+      formStatus.classList.remove('error');
+      formStatus.classList.add('success');
+    }
+  } catch (error) {
+    if (formStatus) {
+      formStatus.textContent = 'Unable to send the enquiry right now. Please email Workplace132000@gmail.com.';
+      formStatus.classList.remove('success');
+      formStatus.classList.add('error');
+    }
+  } finally {
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.innerHTML = originalButtonHTML;
+    }
+  }
 });
-
 
 // Business solution tabs
 const solutionButtons = document.querySelectorAll('[data-solution-tab]');
