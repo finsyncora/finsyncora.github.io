@@ -69,3 +69,36 @@ ${name}`
 
   window.location.href = `mailto:Workplace132000@gmail.com?subject=${subject}&body=${body}`;
 });
+
+
+// Business solution tabs
+const solutionButtons = document.querySelectorAll('[data-solution-tab]');
+const solutionPanels = document.querySelectorAll('[data-solution-panel]');
+
+function activateSolution(key) {
+  solutionButtons.forEach(btn => {
+    const active = btn.dataset.solutionTab === key;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-selected', String(active));
+  });
+  solutionPanels.forEach(panel => {
+    const active = panel.dataset.solutionPanel === key;
+    panel.classList.toggle('active', active);
+    panel.hidden = !active;
+  });
+}
+
+solutionButtons.forEach(button => {
+  button.addEventListener('click', () => activateSolution(button.dataset.solutionTab));
+});
+
+// Preselect enquiry service when a service CTA is clicked.
+document.querySelectorAll('[data-service-choice]').forEach(link => {
+  link.addEventListener('click', () => {
+    const select = document.querySelector('#projectForm select[name="service"]');
+    if (!select) return;
+    const requested = link.dataset.serviceChoice;
+    const option = [...select.options].find(item => item.text === requested);
+    if (option) select.value = option.value;
+  });
+});

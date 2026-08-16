@@ -1,21 +1,17 @@
-# Tally ↔ Google Sheets Automation Website
+# FinSyncora Website Update
 
-Static responsive website for Tally ↔ Google Sheets integration, automated finance reporting, and dashboard services.
+Updated website with five service areas and interactive service tabs:
 
-## Current version
-- External Apps Script/dashboard links have been removed.
-- Dashboard work is shown using static visual preview images only.
-- Four concept previews are included: Sales, Receivables, Payables, and Cash Flow.
-- The Tally ↔ Google Sheets integration visual is bundled locally.
+1. Tally ↔ Google Sheets Integration
+2. Dynamic Dashboards
+3. Auto Email Reminders
+4. Website Generation
+5. Customized TDLs
 
-## Run locally
-Open `index.html` directly in a browser, or use VS Code + Live Server.
+## Update your existing GitHub Pages website
 
-## Publish on GitHub Pages
-1. Upload all files and the `assets` folder to your repository.
-2. Keep `index.html` in the repository root.
-3. Open repository Settings → Pages.
-4. Select Deploy from a branch → `main` → `/ (root)`.
-5. Save and wait for GitHub Pages to publish the site.
+Your repository should be `finsyncora/finsyncora.github.io`. Upload **all files from this folder to the root of that repository** and replace the existing files.
 
-The preview images are illustrative concepts and are not live client dashboards or client data.
+Important: this package intentionally keeps the PNG/SVG files in the root, matching your current GitHub repository structure. Do not place them in an `assets` folder unless you also change the image paths in `index.html`.
+
+After committing to `main`, GitHub Pages should deploy automatically. Then refresh `https://finsyncora.github.io` with Ctrl+F5.
