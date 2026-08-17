@@ -50,12 +50,30 @@ form?.addEventListener('submit', async event => {
   const originalButtonHTML = submitButton?.innerHTML || 'Send enquiry <span>↗</span>';
 
   const data = new FormData(form);
+  const phone = String(data.get('phone') || '').trim();
+  const currentSystem = String(data.get('currentSystem') || '').trim();
+  const goal = String(data.get('goal') || '').trim();
+  const timeline = String(data.get('timeline') || '').trim();
+  const details = String(data.get('details') || '').trim();
+  const honeypot = String(data.get('website') || '').trim();
+
+  // Basic spam trap. Real visitors never see this field.
+  if (honeypot) return;
+
+  const extraContext = [
+    phone && `Phone / WhatsApp: ${phone}`,
+    currentSystem && `Current system: ${currentSystem}`,
+    goal && `Primary goal: ${goal}`,
+    timeline && `Preferred timeline: ${timeline}`,
+    details && `Requirement: ${details}`
+  ].filter(Boolean).join('\n');
+
   const payload = {
     name: String(data.get('name') || '').trim(),
     company: String(data.get('company') || '').trim(),
     email: String(data.get('email') || '').trim(),
     service: String(data.get('service') || '').trim(),
-    message: String(data.get('details') || '').trim()
+    message: extraContext || 'No additional details supplied.'
   };
 
   if (!payload.name || !payload.email || !payload.service) {
@@ -129,4 +147,16 @@ document.querySelectorAll('[data-service-choice]').forEach(link => {
     const option = [...select.options].find(item => item.text === requested);
     if (option) select.value = option.value;
   });
+});
+
+
+// Case-study cards: keyboard-friendly active state.
+document.querySelectorAll('.case-card').forEach(card => {
+  card.setAttribute('tabindex', '0');
+  const activate = () => {
+    document.querySelectorAll('.case-card').forEach(item => item.classList.remove('active'));
+    card.classList.add('active');
+  };
+  card.addEventListener('mouseenter', activate);
+  card.addEventListener('focus', activate);
 });

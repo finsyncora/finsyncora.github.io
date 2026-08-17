@@ -1,17 +1,17 @@
-# FinSyncora Website Update
+# FinSyncora website – anonymized case-study update
 
-Updated website with five service areas and interactive service tabs:
+This build adds:
 
-1. Tally ↔ Google Sheets Integration
-2. Dynamic Dashboards
-3. Auto Email Reminders
-4. Website Generation
-5. Customized TDLs
+- Anonymized project/case-study section
+- Before/after workflow summaries
+- Representative client-outcome summaries clearly marked as non-verbatim
+- Stronger explanation of why automation and dashboards matter
+- Expanded enquiry form (phone, current system, goal, timeline, privacy confirmation)
+- Existing Google Apps Script enquiry endpoint remains connected
+- Client confidentiality notice throughout portfolio sections
 
-## Update your existing GitHub Pages website
+## Important privacy rule
+No live client Apps Script links, company names, product names, customer/vendor names, transaction values, or client identifiers are published in this build.
 
-Your repository should be `finsyncora/finsyncora.github.io`. Upload **all files from this folder to the root of that repository** and replace the existing files.
-
-Important: this package intentionally keeps the PNG/SVG files in the root, matching your current GitHub repository structure. Do not place them in an `assets` folder unless you also change the image paths in `index.html`.
-
-After committing to `main`, GitHub Pages should deploy automatically. Then refresh `https://finsyncora.github.io` with Ctrl+F5.
+## GitHub update
+Upload and replace `index.html`, `styles.css`, and `script.js` in the `finsyncora.github.io` repository. Existing images can remain unchanged.
