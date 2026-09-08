@@ -43,73 +43,72 @@ const form = document.getElementById('projectForm');
 const formStatus = document.getElementById('formStatus');
 const enquiryEndpoint = 'https://script.google.com/macros/s/AKfycbyp1wBv0Nhp2OV5diVLzRYNgiqk7Vb_3ivzG0MtpZhVPLgzJdlVcjlLvNhBXbZEWegD/exec';
 
+function setFormStatus(message, type = '') {
+  if (!formStatus) return;
+  formStatus.textContent = message;
+  formStatus.classList.remove('success', 'error');
+  if (type) formStatus.classList.add(type);
+}
+
 form?.addEventListener('submit', async event => {
   event.preventDefault();
 
   const submitButton = form.querySelector('button[type="submit"]');
   const originalButtonHTML = submitButton?.innerHTML || 'Send enquiry <span>↗</span>';
-
   const data = new FormData(form);
+  const honeypot = String(data.get('website') || '').trim();
+
+  if (honeypot) return;
+
   const phone = String(data.get('phone') || '').trim();
   const currentSystem = String(data.get('currentSystem') || '').trim();
   const goal = String(data.get('goal') || '').trim();
   const timeline = String(data.get('timeline') || '').trim();
   const details = String(data.get('details') || '').trim();
-  const honeypot = String(data.get('website') || '').trim();
-
-  // Basic spam trap. Real visitors never see this field.
-  if (honeypot) return;
-
-  const extraContext = [
-    phone && `Phone / WhatsApp: ${phone}`,
-    currentSystem && `Current system: ${currentSystem}`,
-    goal && `Primary goal: ${goal}`,
-    timeline && `Preferred timeline: ${timeline}`,
-    details && `Requirement: ${details}`
-  ].filter(Boolean).join('\n');
 
   const payload = {
     name: String(data.get('name') || '').trim(),
     company: String(data.get('company') || '').trim(),
     email: String(data.get('email') || '').trim(),
     service: String(data.get('service') || '').trim(),
-    message: extraContext || 'No additional details supplied.'
+    message: [
+      phone && `Phone / WhatsApp: ${phone}`,
+      currentSystem && `Current system: ${currentSystem}`,
+      goal && `Primary goal: ${goal}`,
+      timeline && `Preferred timeline: ${timeline}`,
+      details && `Requirement: ${details}`
+    ].filter(Boolean).join('\n') || 'No additional details supplied.',
+    submittedAt: new Date().toISOString()
   };
 
   if (!payload.name || !payload.email || !payload.service) {
-    if (formStatus) formStatus.textContent = 'Please complete your name, email, and service.';
+    setFormStatus('Please complete your name, email, and required service.', 'error');
     return;
   }
 
   if (submitButton) {
     submitButton.disabled = true;
-    submitButton.textContent = 'Sending...';
+    submitButton.textContent = 'Submitting...';
   }
-  if (formStatus) formStatus.textContent = 'Sending your enquiry...';
+  setFormStatus('Submitting your enquiry...');
+
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 15000);
 
   try {
     await fetch(enquiryEndpoint, {
       method: 'POST',
       mode: 'no-cors',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8'
-      },
-      body: JSON.stringify(payload)
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+      signal: controller.signal
     });
-
     form.reset();
-    if (formStatus) {
-      formStatus.textContent = '✓ Thank you! Your enquiry has been sent to FinSyncora.';
-      formStatus.classList.remove('error');
-      formStatus.classList.add('success');
-    }
+    setFormStatus('✓ Your enquiry was submitted. We will reply to the email you provided.', 'success');
   } catch (error) {
-    if (formStatus) {
-      formStatus.textContent = 'Unable to send the enquiry right now. Please email Workplace132000@gmail.com.';
-      formStatus.classList.remove('success');
-      formStatus.classList.add('error');
-    }
+    setFormStatus('We could not submit your enquiry. Please email Workplace132000@gmail.com.', 'error');
   } finally {
+    window.clearTimeout(timeout);
     if (submitButton) {
       submitButton.disabled = false;
       submitButton.innerHTML = originalButtonHTML;
