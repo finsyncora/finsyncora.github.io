@@ -902,3 +902,32 @@ button { cursor: pointer; }
 /* QR-only checkout */
 .qr-only-main { min-height:100vh; display:grid; place-items:center; padding:24px; background:#fff; }
 .qr-only-image { display:block; width:min(600px, calc(100vw - 48px)); height:auto; image-rendering:auto; }
+
+/* Trial booking and payment flow */
+.trial-flow-card { display:grid; grid-template-columns:.9fr 1.1fr; gap:44px; padding:clamp(26px,5vw,52px); border-radius:30px; background:#fff; border:1px solid rgba(7,27,47,.1); box-shadow:0 30px 80px rgba(7,27,47,.13); }
+.trial-flow-intro h1 { margin:10px 0 15px; color:var(--ink); font-size:clamp(38px,5vw,62px); line-height:.98; letter-spacing:-.06em; }
+.trial-flow-intro > p { margin:0; color:var(--muted); line-height:1.7; font-size:14px; }
+.trial-steps { display:grid; gap:18px; }
+.trial-form, .trial-qr-stage { display:grid; gap:13px; padding:23px; border-radius:21px; border:1px solid #dce9e5; background:#f8fcfb; }
+.trial-form label { display:grid; gap:6px; color:#3d5666; font-size:10px; font-weight:850; text-transform:uppercase; letter-spacing:.07em; }
+.trial-form input, .trial-form textarea { width:100%; padding:11px 12px; border:1px solid #cfdfda; border-radius:10px; color:var(--ink); background:#fff; font:inherit; font-size:12px; text-transform:none; letter-spacing:normal; outline:none; }
+.trial-form textarea { resize:vertical; }
+.trial-form input:focus, .trial-form textarea:focus { border-color:var(--mint-dark); box-shadow:0 0 0 3px rgba(46,230,166,.14); }
+.trial-form-row { display:grid; grid-template-columns:1fr 1fr; gap:11px; }
+.trial-step-head { display:flex; align-items:center; gap:10px; }
+.trial-step-head > span { width:27px; height:27px; display:grid; place-items:center; border-radius:9px; background:var(--ink); color:var(--mint); font-size:11px; font-weight:900; }
+.trial-step-head div { display:grid; gap:2px; }
+.trial-step-head strong { color:var(--ink); font-size:13px; }
+.trial-step-head small, .trial-status { color:#647b89; font-size:10px; line-height:1.4; }
+.trial-qr-stage { background:linear-gradient(155deg,#071b2f,#123e57); border-color:transparent; text-align:center; }
+.trial-qr-stage .trial-step-head { text-align:left; }
+.trial-qr-stage .trial-step-head strong { color:#fff; }
+.trial-qr-stage .trial-step-head small { color:#aebfca; }
+.trial-qr-stage .payment-qr { width:min(100%,250px); margin:4px auto; }
+.paid-form { text-align:left; background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.16); }
+.paid-form label, .paid-form .trial-step-head strong { color:#fff; }
+.paid-form .trial-step-head small, .paid-form .trial-status { color:#bfced7; }
+.paid-form input { border-color:rgba(255,255,255,.25); }
+.paid-form .btn-ghost { color:#fff; border-color:rgba(255,255,255,.35); }
+@media (max-width:850px) { .trial-flow-card { grid-template-columns:1fr; gap:30px; } }
+@media (max-width:560px) { .trial-flow-card { padding:24px 18px; border-radius:22px; } .trial-form-row { grid-template-columns:1fr; } }
