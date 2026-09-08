@@ -868,3 +868,7 @@ button { cursor: pointer; }
 .pricing-footer .btn-ghost { color:#fff; border-color:rgba(255,255,255,.35); }
 @media (max-width:980px) { .pricing-grid { grid-template-columns:1fr 1fr; } .pricing-card.featured { transform:none; } }
 @media (max-width:650px) { .pricing-grid { grid-template-columns:1fr; } .pricing-footer { align-items:flex-start; flex-direction:column; } .pricing-card { min-height:auto; } }
+
+.pricing-footer-actions { display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+.pricing-footer-actions .btn { white-space:nowrap; }
+@media (max-width:650px) { .pricing-footer-actions { justify-content:flex-start; } }
