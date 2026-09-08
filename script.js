@@ -159,3 +159,25 @@ document.querySelectorAll('.case-card').forEach(card => {
   card.addEventListener('mouseenter', activate);
   card.addEventListener('focus', activate);
 });
+
+
+// 2026 festive offer: automatically ends after the final day of Sharad Navratri in India.
+const festiveOffer = document.getElementById('festiveOffer');
+const closeFestiveOffer = document.getElementById('closeFestiveOffer');
+const offerCountdown = document.getElementById('offerCountdown');
+const festiveOfferEnd = new Date('2026-10-19T23:59:59+05:30');
+
+function updateFestiveOffer() {
+  if (!festiveOffer) return;
+  const remaining = festiveOfferEnd.getTime() - Date.now();
+  if (remaining <= 0) {
+    festiveOffer.hidden = true;
+    return;
+  }
+  const days = Math.floor(remaining / 86400000);
+  const hours = Math.floor((remaining % 86400000) / 3600000);
+  if (offerCountdown) offerCountdown.textContent = `${days}d ${hours}h remaining`;
+}
+updateFestiveOffer();
+window.setInterval(updateFestiveOffer, 60000);
+closeFestiveOffer?.addEventListener('click', () => { festiveOffer.hidden = true; });
