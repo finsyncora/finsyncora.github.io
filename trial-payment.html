@@ -3,15 +3,36 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Secure UPI payment for the FinSyncora requirement trial.">
   <meta name="theme-color" content="#091b2e">
   <link rel="canonical" href="https://finsyncora.com/trial-payment.html">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260908-payment2">
-  <title>Pay ₹1,999 | FinSyncora</title>
+  <link rel="stylesheet" href="styles.css?v=20260908-payment3">
+  <title>Book a Trial — ₹1,999 | FinSyncora</title>
 </head>
 <body class="payment-page">
-  <main class="qr-only-main">
-    <img class="qr-only-image" src="https://api.qrserver.com/v1/create-qr-code/?size=600x600&format=svg&data=upi%3A%2F%2Fpay%3Fpa%3D9172641237%2540kotak%26pn%3DFinSyncora%26am%3D1999%26cu%3DINR%26tn%3DFinSyncora%2520Requirement%2520Trial" width="600" height="600" alt="Scan to pay ₹1,999 to FinSyncora by UPI">
+  <header class="site-header payment-header">
+    <a class="brand" href="index.html" aria-label="FinSyncora home"><span class="brand-mark">FS</span><span class="brand-copy"><strong>FinSyncora</strong><small>Business Automation</small></span></a>
+    <a class="text-link" href="index.html#pricing">← View pricing</a>
+  </header>
+  <main class="payment-main">
+    <section class="payment-card">
+      <div class="payment-copy">
+        <div class="eyebrow">Requirement trial</div>
+        <h1>Start with one workflow.</h1>
+        <p>Pay ₹1,999 to book a focused requirement review. We will understand one workflow and recommend the right automation, dashboard, Tally, Sheets, TDL, or website solution.</p>
+        <div class="payment-includes"><span>✓ One focused requirement discussion</span><span>✓ Practical solution direction</span><span>✓ Clear next-step recommendation</span></div>
+        <div class="payment-total"><span>Trial fee</span><strong>₹1,999</strong><small>One-time payment</small></div>
+      </div>
+      <div class="payment-qr-wrap">
+        <span class="payment-method">Pay securely by UPI</span>
+        <img class="payment-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=420x420&format=svg&data=upi%3A%2F%2Fpay%3Fpa%3D9172641237%2540kotak%26pn%3DFinSyncora%26am%3D1999%26cu%3DINR%26tn%3DFinSyncora%2520Requirement%2520Trial" width="420" height="420" alt="UPI QR code to pay ₹1,999 to FinSyncora">
+        <a class="btn btn-primary payment-open-upi" href="upi://pay?pa=9172641237%40kotak&pn=FinSyncora&am=1999&cu=INR&tn=FinSyncora%20Requirement%20Trial">Open UPI app <span>↗</span></a>
+        <p class="payment-help">After payment, return to the enquiry form and mention your payment reference in the requirement details.</p>
+        <a class="text-link" href="index.html#contact">I have paid — submit my requirement →</a>
+      </div>
+    </section>
+    <p class="payment-safe">Please verify the payment amount before paying. Do not share your UPI PIN, card details, or banking password with anyone.</p>
   </main>
 </body>
 </html>
