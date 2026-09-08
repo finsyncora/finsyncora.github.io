@@ -898,3 +898,7 @@ button { cursor: pointer; }
 .payment-safe { max-width:760px; margin:20px auto 0; color:#607787; text-align:center; font-size:11px; line-height:1.5; }
 @media (max-width:850px) { .payment-card { grid-template-columns:1fr; gap:30px; } .payment-qr-wrap { max-width:410px; width:100%; margin:auto; } }
 @media (max-width:600px) { .payment-main { padding-top:28px; } .payment-card { padding:24px 18px; border-radius:22px; } .payment-header { margin:12px auto 0; } }
+
+/* QR-only checkout */
+.qr-only-main { min-height:100vh; display:grid; place-items:center; padding:24px; background:#fff; }
+.qr-only-image { display:block; width:min(600px, calc(100vw - 48px)); height:auto; image-rendering:auto; }
