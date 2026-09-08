@@ -790,3 +790,54 @@ button { cursor: pointer; }
 .festive-offer__close:hover { background:rgba(255,255,255,.25); }
 @keyframes festiveEnter { from { opacity:0; transform:translateY(22px) scale(.96); } to { opacity:1; transform:none; } }
 @media (max-width: 560px) { .festive-offer { right:16px; bottom:16px; padding:18px 45px 18px 18px; } .festive-offer__copy strong { font-size:27px; } }
+
+
+/* Compact festive announcement bar — final override */
+.festive-offer {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  z-index: 20;
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  margin: 0;
+  padding: 12px max(22px, calc((100vw - 1180px) / 2));
+  display: grid;
+  grid-template-columns: auto minmax(220px, 1fr) auto auto;
+  align-items: center;
+  column-gap: 18px;
+  overflow: hidden;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 225, 151, .42);
+  border-radius: 0;
+  background: linear-gradient(100deg, #641d38 0%, #a73642 48%, #d86d32 100%);
+  color: #fff9ee;
+  box-shadow: 0 5px 20px rgba(74, 20, 43, .16);
+  animation: none;
+}
+.festive-offer__glow { width:260px; height:260px; top:-145px; right:12%; opacity:.9; }
+.festive-offer__copy { display:grid; gap:2px; min-width:150px; }
+.festive-offer__eyebrow { font-size:8px; color:#ffdf9a; letter-spacing:.16em; }
+.festive-offer__copy strong { font-size:22px; line-height:1; letter-spacing:-.04em; color:#fff; }
+.festive-offer__copy span:last-child { font-size:9px; font-weight:800; color:#ffecc8; }
+.festive-offer p { margin:0; max-width:610px; font-size:11px; line-height:1.45; color:#fff4df; }
+.festive-offer p b { color:#fff; white-space:nowrap; }
+.festive-offer__actions { justify-self:end; flex-wrap:nowrap; gap:10px; }
+.festive-offer__cta { min-height:36px; padding:8px 12px; border-radius:10px; white-space:nowrap; font-size:10px; }
+.festive-offer__countdown { white-space:nowrap; color:#ffe4ae; font-size:9px; }
+.festive-offer__close { top:50%; right:max(8px, calc((100vw - 1240px) / 2)); transform:translateY(-50%); width:27px; height:27px; font-size:20px; }
+.site-header { margin-top: 14px; }
+@media (max-width: 900px) {
+  .festive-offer { grid-template-columns:auto 1fr auto; padding:11px 44px 11px 18px; gap:12px; }
+  .festive-offer p { display:none; }
+  .festive-offer__close { right:10px; }
+}
+@media (max-width: 560px) {
+  .festive-offer { grid-template-columns:1fr auto; row-gap:8px; padding:11px 42px 11px 15px; }
+  .festive-offer__copy { grid-column:1 / -1; }
+  .festive-offer__copy strong { font-size:20px; }
+  .festive-offer__actions { justify-self:start; }
+  .festive-offer__countdown { font-size:9px; }
+  .site-header { margin-top: 10px; }
+}
