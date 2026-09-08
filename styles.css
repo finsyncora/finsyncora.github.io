@@ -737,3 +737,23 @@ button { cursor: pointer; }
   .case-card:last-child,.testimonial-grid blockquote:last-child { grid-column:auto; }
   .testimonial-wrap { padding:20px; }
 }
+
+
+/* Professional accessibility and performance refinements */
+:focus-visible {
+  outline: 3px solid #2de6a6;
+  outline-offset: 4px;
+}
+.privacy-check a {
+  color: #8ef0cc;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
