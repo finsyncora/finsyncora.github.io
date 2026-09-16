@@ -424,19 +424,6 @@ button { cursor: pointer; }
 .dashboard-picture figcaption span { color:var(--muted); font-size:12px; line-height:1.55; }
 .preview-note { margin:18px 0 0; color:#778a98; font-size:10px; }
 
-.calculator-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:52px; align-items:center; }
-.calculator-copy h2 { margin:0; font-size:clamp(38px,4.5vw,58px); letter-spacing:-.05em; line-height:1; }
-.calculator-copy p { color:var(--muted); line-height:1.7; }
-.calc-assumption { margin-top:24px; padding:15px 17px; border-radius:14px; background:#eef5f3; border:1px solid #dae8e3; color:#567064; font-size:11px; line-height:1.5; }
-.calculator-card { background:white; border:1px solid rgba(7,27,47,.09); border-radius:24px; padding:28px; box-shadow:var(--shadow); display:grid; gap:23px; }
-.calculator-card label { display:grid; grid-template-columns:1fr auto; gap:10px; color:#4b6272; font-size:12px; font-weight:700; }
-.calculator-card label strong { color:var(--ink); }
-.calculator-card input[type="range"] { grid-column:1/-1; width:100%; accent-color:var(--mint-dark); }
-.calc-result { padding:20px; border-radius:17px; background:var(--ink); color:white; display:grid; gap:5px; }
-.calc-result span { color:#9fb3c1; font-size:10px; text-transform:uppercase; letter-spacing:.08em; font-weight:800; }
-.calc-result strong { font-size:28px; letter-spacing:-.04em; }
-.calc-result small { color:var(--mint); font-size:11px; }
-
 .work-preview { padding:0; background:#f7faf9; height:auto; aspect-ratio:16/9; }
 .work-preview img { width:100%; height:100%; object-fit:contain; object-position:center; display:block; transition:transform .35s ease; }
 .work-card:hover .work-preview img { transform:scale(1.025); }
@@ -444,7 +431,7 @@ button { cursor: pointer; }
 .visual-only-grid .work-card { cursor:default; }
 
 @media (max-width: 1020px) {
-  .split-heading, .workflow-visual, .calculator-grid { grid-template-columns:1fr; gap:30px; }
+  .split-heading, .workflow-visual { grid-template-columns:1fr; gap:30px; }
   .before-after-grid { grid-template-columns:1fr; }
   .transform-arrow { transform:rotate(90deg); padding:4px 0; }
 }
