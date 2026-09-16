@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="FinSyncora turns Tally data into always-ready Google Sheets, Excel reports and management dashboards."
+    />
+    <meta name="theme-color" content="#071f35" />
+    <link rel="canonical" href="https://finsyncora.com/smart-work/" />
+    <meta property="og:title" content="FinSyncora Smart Work Demo" />
+    <meta property="og:description" content="Compare manual Tally reporting with a refresh-ready automated workflow and estimate potential time savings." />
+    <meta property="og:url" content="https://finsyncora.com/smart-work/" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <title>FinSyncora — Smart work for finance teams</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../#top" aria-label="FinSyncora home">
+        <span class="brand-mark" aria-hidden="true">FS</span>
+        <span class="brand-copy"><strong>FinSyncora</strong><small>BUSINESS AUTOMATION</small></span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="../#top">Home</a>
+        <a href="../#services">Solutions</a>
+        <a href="../#integrations">Reports</a>
+        <a href="./" aria-current="page">Demo</a>
+        <a href="../#impact">Why Automate</a>
+        <a href="../#about">About</a>
+      </nav>
+      <a class="button button-small button-header" href="../#contact">Discuss my requirement</a>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <span class="eyebrow"><i></i> TALLY · SHEETS · EXCEL · DASHBOARDS</span>
+          <h1 id="hero-title">Automate the report work.<br /><em>See the business clearly.</em></h1>
+          <p>
+            Turn everyday Tally data into clean, refresh-ready reports—without repeating exports,
+            formulas and reconciliations every week.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#workflow">
+              Try the workflow
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" /></svg>
+            </a>
+            <a class="text-button" href="../#contact">Discuss my requirement <span>↗</span></a>
+          </div>
+          <div class="proof-row" aria-label="Key capabilities">
+            <span><b>✓</b> Scheduled refreshes</span>
+            <span><b>✓</b> Built-in checks</span>
+            <span><b>✓</b> One source of truth</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Illustration of connected reporting tools">
+          <div class="visual-topline">
+            <span>REPORT FLOW</span>
+            <span class="live-dot">Connected</span>
+          </div>
+          <div class="data-flow">
+            <div class="source-card">
+              <span class="source-icon">T</span>
+              <div><strong>Tally</strong><small>Accounting data</small></div>
+            </div>
+            <div class="flow-line"><i></i></div>
+            <div class="source-card output-card">
+              <span class="source-icon sheet-icon">▦</span>
+              <div><strong>Live reports</strong><small>Sheets · Excel · BI</small></div>
+            </div>
+          </div>
+          <div class="mini-dashboard">
+            <div class="mini-metric">
+              <span>Net sales</span><strong>₹42.8L</strong><small class="positive">↑ 8.4%</small>
+            </div>
+            <div class="mini-chart" aria-hidden="true">
+              <i style="--h: 38%"></i><i style="--h: 52%"></i><i style="--h: 46%"></i>
+              <i style="--h: 66%"></i><i style="--h: 63%"></i><i style="--h: 86%"></i>
+            </div>
+          </div>
+          <div class="sync-note"><span>✓</span> Dashboard refreshed <b>just now</b></div>
+        </div>
+      </section>
+
+      <section class="workflow-section" id="workflow" aria-labelledby="workflow-title">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow eyebrow-light">INTERACTIVE WORKFLOW</span>
+            <h2 id="workflow-title">See the difference, step by step.</h2>
+          </div>
+          <p>Switch modes to see how the same finance report moves from Tally to the management team.</p>
+        </div>
+
+        <div class="mode-switcher" role="tablist" aria-label="Reporting workflow mode">
+          <button id="manual-tab" class="mode-button is-active" role="tab" aria-selected="true" aria-controls="workflow-panel" data-mode="manual">
+            <span>Manual reporting</span><small>Repeated every cycle</small>
+          </button>
+          <button id="auto-tab" class="mode-button" role="tab" aria-selected="false" aria-controls="workflow-panel" data-mode="automated">
+            <span>Automated with Finsyncora</span><small>Set once, refresh anytime</small>
+          </button>
+        </div>
+
+        <div class="workflow-board" id="workflow-panel" role="tabpanel" aria-live="polite">
+          <div class="steps-panel">
+            <div class="panel-label">
+              <span id="mode-label">MANUAL WORKFLOW</span>
+              <span class="time-pill" id="time-pill">~75 min / report</span>
+            </div>
+            <ol class="step-list" id="step-list"></ol>
+            <div class="workflow-summary" id="workflow-summary">
+              <span class="summary-icon">!</span>
+              <p><strong>Every refresh restarts the work.</strong><br />The team spends time preparing numbers before it can analyse them.</p>
+            </div>
+          </div>
+
+          <div class="output-panel">
+            <div class="dashboard-toolbar">
+              <div>
+                <span class="panel-label-title">Management overview</span>
+                <span class="freshness" id="freshness"><i></i> Updated manually</span>
+              </div>
+              <select id="period-select" aria-label="Dashboard period">
+                <option value="sep">September 2026</option>
+                <option value="aug">August 2026</option>
+                <option value="jul">July 2026</option>
+              </select>
+            </div>
+
+            <div class="metric-grid">
+              <article class="metric-card">
+                <span>Net sales</span>
+                <strong id="sales-value">₹42.8L</strong>
+                <small id="sales-change" class="positive">↑ 8.4% vs last month</small>
+              </article>
+              <article class="metric-card">
+                <span>Receivables</span>
+                <strong id="receivable-value">₹8.4L</strong>
+                <small id="receivable-change">12 invoices due</small>
+              </article>
+              <article class="metric-card">
+                <span>Gross margin</span>
+                <strong id="margin-value">28.6%</strong>
+                <small id="margin-change" class="positive">↑ 1.8 pts</small>
+              </article>
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-heading">
+                <div><strong>Sales trend</strong><small>Illustrative data · ₹ lakh</small></div>
+                <span><i></i> Net sales</span>
+              </div>
+              <div class="chart-area" aria-label="Illustrative six-month sales chart">
+                <span class="grid-line" style="--y: 0%">45</span>
+                <span class="grid-line" style="--y: 33%">30</span>
+                <span class="grid-line" style="--y: 66%">15</span>
+                <span class="grid-line" style="--y: 100%">0</span>
+                <svg viewBox="0 0 600 210" preserveAspectRatio="none" role="img" aria-label="Sales increased from 25 to 43 lakh across six months">
+                  <defs>
+                    <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#3978ef" stop-opacity=".26" />
+                      <stop offset="1" stop-color="#3978ef" stop-opacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path class="area-path" d="M10 150 L125 126 L240 136 L355 91 L470 104 L590 42 L590 205 L10 205 Z" />
+                  <path class="line-path" d="M10 150 L125 126 L240 136 L355 91 L470 104 L590 42" />
+                  <g class="chart-dots"><circle cx="10" cy="150" r="5"/><circle cx="125" cy="126" r="5"/><circle cx="240" cy="136" r="5"/><circle cx="355" cy="91" r="5"/><circle cx="470" cy="104" r="5"/><circle cx="590" cy="42" r="5"/></g>
+                </svg>
+                <div class="x-labels"><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="demo-disclaimer">Illustrative workflow and sample figures. Actual results depend on report complexity, data quality and refresh frequency.</p>
+      </section>
+
+      <section class="impact-section" id="impact" aria-labelledby="impact-title">
+        <div class="impact-copy">
+          <span class="eyebrow">SMART WORK, MADE MEASURABLE</span>
+          <h2 id="impact-title">Use your finance team for finance—not file preparation.</h2>
+          <p>Move from repetitive report assembly to a controlled flow your team can review, trust and reuse.</p>
+          <div class="benefit-list">
+            <span><i>01</i><b>Faster visibility</b><small>Refresh reports without rebuilding them.</small></span>
+            <span><i>02</i><b>Fewer handoffs</b><small>Keep logic and checks in one workflow.</small></span>
+            <span><i>03</i><b>Better decisions</b><small>Give leaders consistent, readable numbers.</small></span>
+          </div>
+        </div>
+
+        <div class="calculator-card">
+          <div class="calculator-heading">
+            <span>TIME-SAVING ESTIMATE</span>
+            <small>Illustrative</small>
+          </div>
+          <label for="report-range">How many reports do you prepare each month?</label>
+          <div class="range-value"><strong id="report-count">12</strong><span>reports / month</span></div>
+          <input id="report-range" type="range" min="4" max="40" step="1" value="12" />
+          <div class="range-labels"><span>4</span><span>40</span></div>
+          <div class="saving-result">
+            <span>Potential time returned</span>
+            <strong><b id="hours-saved">13</b> hours <small>/ month</small></strong>
+            <p>Based on 75 minutes manually vs 12 minutes with a monitored automated flow.</p>
+          </div>
+          <a class="button button-primary button-full" href="../#contact">Discuss my reporting needs <span>↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand footer-brand" href="../#top"><span class="brand-mark" aria-hidden="true">FS</span><span class="brand-copy"><strong>FinSyncora</strong><small>BUSINESS AUTOMATION</small></span></a>
+      <p><strong>Smart work.</strong> Clear numbers. Faster decisions.</p>
+      <span>Interactive reporting demo · © 2026 FinSyncora</span>
+    </footer>
+
+
+    <script src="./script.js"></script>
+  </body>
+</html>
+

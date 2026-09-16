@@ -59,10 +59,10 @@ button { cursor: pointer; }
 .brand-copy { display: grid; line-height: 1.05; }
 .brand-copy strong { font-size: 14px; }
 .brand-copy small { margin-top: 5px; font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .13em; font-weight: 700; }
-.nav { display: flex; align-items: center; gap: 26px; font-size: 13px; font-weight: 700; }
+.nav { display: flex; align-items: center; gap: 18px; font-size: 12px; font-weight: 700; }
 .nav > a:not(.nav-cta) { color: #355066; transition: color .2s ease; }
 .nav > a:not(.nav-cta):hover { color: var(--ink); }
-.nav-cta { padding: 13px 18px; background: var(--ink); color: white; border-radius: 12px; }
+.nav-cta { padding: 13px 16px; background: var(--ink); color: white; border-radius: 12px; }
 .menu-toggle { display: none; border: 0; background: transparent; width: 42px; height: 42px; padding: 9px; }
 .menu-toggle span { display: block; height: 2px; background: var(--ink); margin: 5px 0; border-radius: 3px; }
 
@@ -931,3 +931,4 @@ button { cursor: pointer; }
 .paid-form .btn-ghost { color:#fff; border-color:rgba(255,255,255,.35); }
 @media (max-width:850px) { .trial-flow-card { grid-template-columns:1fr; gap:30px; } }
 @media (max-width:560px) { .trial-flow-card { padding:24px 18px; border-radius:22px; } .trial-form-row { grid-template-columns:1fr; } }
+
