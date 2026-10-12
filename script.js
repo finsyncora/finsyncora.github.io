@@ -231,3 +231,55 @@ if (typeof IntersectionObserver === 'function') {
   }, { rootMargin: '-15% 0px -65% 0px' });
   document.querySelectorAll('main section[id]').forEach(section => sectionObserver.observe(section));
 }
+
+// Reference-inspired scrolling and presentation details.
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!reduceMotion && typeof IntersectionObserver === 'function') {
+  document.documentElement.classList.add('motion-ready');
+}
+const header = document.querySelector('.site-header');
+const progress = document.querySelector('.scroll-progress');
+const backToTop = document.querySelector('.back-to-top');
+let scrollTicking = false;
+function updateScrollDetails() {
+  const scrollTop = window.scrollY;
+  const range = document.documentElement.scrollHeight - window.innerHeight;
+  if (progress) progress.style.transform = `scaleX(${range > 0 ? scrollTop / range : 0})`;
+  header?.classList.toggle('scrolled', scrollTop > 40);
+  backToTop?.classList.toggle('shown', scrollTop > 600);
+  scrollTicking = false;
+}
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) { scrollTicking = true; requestAnimationFrame(updateScrollDetails); }
+}, { passive: true });
+updateScrollDetails();
+const rail = document.querySelector('.service-rail');
+function moveService(direction) {
+  const card = rail?.querySelector('.service-slide');
+  if (!rail || !card) return;
+  const step = card.getBoundingClientRect().width + 24;
+  rail.scrollBy({ left: step * direction, behavior: reduceMotion ? 'auto' : 'smooth' });
+}
+document.querySelector('[data-carousel-prev]')?.addEventListener('click', () => moveService(-1));
+document.querySelector('[data-carousel-next]')?.addEventListener('click', () => moveService(1));
+rail?.addEventListener('keydown', event => {
+  if (event.target !== rail || !['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+  event.preventDefault(); moveService(event.key === 'ArrowRight' ? 1 : -1);
+});
+function openLinkedService() {
+  const key = window.location.hash.replace('#solution-', '');
+  if ([...solutionButtons].some(button => button.dataset.solutionTab === key)) activateSolution(key);
+}
+openLinkedService();
+window.addEventListener('hashchange', openLinkedService);
+document.addEventListener('click', event => {
+  document.querySelectorAll('.nav-dropdown[open]').forEach(menu => {
+    if (!menu.contains(event.target) || event.target.closest('a')) menu.open = false;
+  });
+});
+document.addEventListener('keydown', event => {
+  if (event.key !== 'Escape') return;
+  document.querySelectorAll('.nav-dropdown[open]').forEach(menu => {
+    menu.open = false; menu.querySelector('summary')?.focus();
+  });
+});
