@@ -26,16 +26,16 @@ tabButtons.forEach(button => {
   });
 });
 
-const revealObserver = new IntersectionObserver(entries => {
+const revealObserver = typeof IntersectionObserver === 'function' ? new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
       revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.1 }) : null;
 
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+document.querySelectorAll('.reveal').forEach(el => revealObserver?.observe(el));
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -104,7 +104,7 @@ form?.addEventListener('submit', async event => {
       signal: controller.signal
     });
     form.reset();
-    setFormStatus('✓ Your enquiry was submitted. We will reply to the email you provided.', 'success');
+    setFormStatus('Your enquiry was sent for processing. Receipt could not be confirmed automatically; email Workplace132000@gmail.com if you need confirmation.', 'success');
   } catch (error) {
     setFormStatus('We could not submit your enquiry. Please email Workplace132000@gmail.com.', 'error');
   } finally {
@@ -125,6 +125,7 @@ function activateSolution(key) {
     const active = btn.dataset.solutionTab === key;
     btn.classList.toggle('active', active);
     btn.setAttribute('aria-selected', String(active));
+    btn.tabIndex = active ? 0 : -1;
   });
   solutionPanels.forEach(panel => {
     const active = panel.dataset.solutionPanel === key;
@@ -181,3 +182,52 @@ function updateFestiveOffer() {
 updateFestiveOffer();
 window.setInterval(updateFestiveOffer, 60000);
 closeFestiveOffer?.addEventListener('click', () => { festiveOffer.hidden = true; });
+
+
+// WAI-ARIA tab navigation: one tab stop per group, arrow/Home/End support.
+function configureTabs(buttons, activate) {
+  const items = [...buttons];
+  items.forEach((button, index) => {
+    button.tabIndex = button.classList.contains('active') ? 0 : -1;
+    button.addEventListener('keydown', event => {
+      let next;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (index + 1) % items.length;
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (index - 1 + items.length) % items.length;
+      if (event.key === 'Home') next = 0;
+      if (event.key === 'End') next = items.length - 1;
+      if (next === undefined) return;
+      event.preventDefault(); activate(items[next]); items[next].focus();
+    });
+    button.addEventListener('click', () => activate(button));
+  });
+}
+configureTabs(solutionButtons, button => activateSolution(button.dataset.solutionTab));
+configureTabs(tabButtons, button => {
+  tabButtons.forEach(item => {
+    const active = item === button;
+    item.classList.toggle('active', active);
+    item.setAttribute('aria-selected', String(active));
+    item.tabIndex = active ? 0 : -1;
+  });
+  tabPanels.forEach(panel => {
+    const active = panel.id === button.dataset.tab;
+    panel.hidden = !active; panel.classList.toggle('active', active);
+  });
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && nav?.classList.contains('open')) {
+    nav.classList.remove('open'); menuToggle?.setAttribute('aria-expanded', 'false'); menuToggle?.focus();
+  }
+});
+if (typeof IntersectionObserver === 'function') {
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      document.querySelectorAll('.nav a').forEach(link => {
+        if (link.hash === '#' + entry.target.id) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    });
+  }, { rootMargin: '-15% 0px -65% 0px' });
+  document.querySelectorAll('main section[id]').forEach(section => sectionObserver.observe(section));
+}
